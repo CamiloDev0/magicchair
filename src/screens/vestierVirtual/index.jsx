@@ -4,8 +4,6 @@ import { useState } from "react"
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { MdOutlineUploadFile } from "react-icons/md";
 import usePhoto from "./Photo";
-import { Link, NavLink } from 'react-router-dom';
-import { useRef } from "react";
 import { Element } from 'react-scroll';
 
 
