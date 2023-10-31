@@ -225,7 +225,7 @@ export default function usePhoto() {
    };
   return {
     src, devices, webcamRef, resultado,loading, show, tab, img, data,imgfinal,
-    setProducto, onChange,setPelo,retroceder ,pelucas,terminar,empezar,comenzar ,capture, showCMS,terminar ,close
+    setProducto, onChange,setPelo,retroceder ,pelucas,terminar,empezar,comenzar ,capture, showCMS ,close
   }
 }
 
