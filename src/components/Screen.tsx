@@ -9,7 +9,7 @@ import { Element } from 'react-scroll';
 
 
 export default function Screen() {
-    //const [devices, setDevices] = useState([]);
+    const devices:any = []
     const [deviceId, setDeviceId] = useState({ facingMode: "user", })
     const {
         webcamRef, loading, resultado,show, tab, src, img,
