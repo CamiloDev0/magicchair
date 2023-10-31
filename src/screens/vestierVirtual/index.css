@@ -1,0 +1,211 @@
+@font-face {
+  font-family: 'Gotham';
+  src: url('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyDa2YxV3o-sXSgAx1g1H9vNfwMwJV0z2Zw') format('woff2'), /* Ruta al archivo WOFF2 */
+       ; /* Ruta al archivo WOFF */
+  font-weight: 700; /* Peso de la fuente */
+}
+
+AIzaSyDa2YxV3o-sXSgAx1g1H9vNfwMwJV0z2Zw
+.img.bcomezar {
+  max-width: 100%;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin: 20px; /* Mueve la imagen 20px desde todos los lados */
+  transform: translateX(30px) translateY(10px); /* Mueve la imagen 30px a la derecha y 10px hacia abajo */
+  width: 80%; /* Ajusta la escala horizontal al 80% del tamaño original */
+}
+
+.fullcontainer {
+  width: 1080px;
+  height: 1920px;
+  position: relative;
+  overflow: hidden;
+}
+
+.fullcontainer video {
+  object-fit: cover; /* Escala el video para que ocupe todo el espacio disponible */
+  width: 100%;
+  height: 100%;
+}
+
+
+
+/* Estilos para alinear a la derecha y centrar verticalmente */
+.vertical.derecha {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100vh;
+  padding: 10px;
+}
+
+/* Estilos para la imagen o botón */
+.button2 {
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  max-width: 100%;
+}
+
+
+.izquierda img {
+  height: 260px;
+  width: 260px;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.70);
+}
+
+.izqboton img {
+  height: 130px;
+  width: 130px;
+  object-fit: cover;
+}
+
+.izqboton {
+  position: absolute;
+  top: 35%;
+  left: 5%;
+}
+
+.derecha img {
+  height: 160px;
+  width: 160px;
+  object-fit: cover;
+  filter: drop-shadow(2px 2px 10px rgba(0, 0, 0, 0.25));
+}
+
+.derecha {
+  position: absolute;
+  top: -45%;
+  right: 0%;
+}
+
+.izquierda {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+}
+
+/* Estilos para el contenedor de las imágenes */
+.smooth-scroll-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+/* Estilos para las imágenes */
+.smooth-scroll-image {
+  width: 100%;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Agrega una transición para la opacidad */
+  opacity: 0.7; /* Reduce la opacidad de la imagen */
+}
+
+/* Pseudo-clase para el desplazamiento suave activado */
+.smooth-scroll-image:hover {
+  transform: translateX(20px);
+  opacity: 1; /* Restaura la opacidad al pasar el mouse sobre la imagen */
+}
+
+#capturedImage {
+  transition: all 1s ease-in-out;
+  transform: scale(1);
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  z-index: 3;
+}
+
+.cms {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+
+.button3 {
+  position: absolute;
+  bottom: 280px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.button3 {
+  width: 260px;
+}
+
+.marco {
+  width: 1080px; 
+  height: 1920px;
+  background: #fff;
+}
+
+
+.marco {
+  width: 1080px;  /* Ancho del contenedor */
+  height: 1920px; /* Alto del contenedor */
+  position: absolute; /* Añade esta propiedad para permitir el posicionamiento absoluto de los elementos hijos */
+}
+
+.marco img {
+  position: absolute; /* Añade esta propiedad para posicionar la imagen absolutamente dentro del contenedor */
+  top: 0; /* Puedes ajustar la posición vertical si es necesario */
+  left: 0; /* Puedes ajustar la posición horizontal si es necesario */
+  width: 100%; /* Ancho de la imagen al 100% del contenedor */
+  height: 100%; /* Alto de la imagen al 100% del contenedor */
+}
+
+.silueta img {
+    height: 720px;
+    width: 720px;
+    object-fit: cover;
+    position: relative;
+}
+
+.silueta {
+  position: absolute;
+  top: 10%;
+  left: 17%;
+}
+
+
+form {
+  gap: 35px;
+  width: 60%;
+  height: 2%;
+  z-index: 1;
+  position: absolute;
+  bottom: 35%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.titulo1 {
+  position: absolute; /* Establece la posición absoluta dentro del contenedor */
+
+  width: 881px;
+  height: 44px;
+  flex-shrink: 0;
+  transform: translate(100px, -1823px); 
+
+}
+
+ .titulo1 h1 {
+  color: #FFF;
+  text-align: center;
+  font-family: Gotham, sans-serif;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+}
