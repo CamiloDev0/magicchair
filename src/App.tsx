@@ -1,5 +1,5 @@
 import Screen from './components/Screen'
-import './App.css'
+import './app.css'
 
 const App = () => <Screen />;
 
