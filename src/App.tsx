@@ -1,15 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import Webcam from 'react-webcam';
-// import { CameraOptions, useFaceDetection } from 'react-use-face-detection';
-// import FaceDetection from '@mediapipe/face_detection';
-// import { Camera } from '@mediapipe/camera_utils';
-import QRCode from 'react-qr-code';
+import * as faceapi from 'face-api.js'
 import html2canvas from 'html2canvas';
 import axios from 'axios';
-import './App.css';
-
-const width = 985;
-const height = 1751;
+import QRCode from 'react-qr-code';
+import './App.css'; 
 
 function App() {
   const [screenACtive, setScreenActive] = useState(1);
@@ -19,24 +14,8 @@ function App() {
   const [image, setImage] = useState<string | null>('');
   const [imageKey, setImageKey] = useState('');
 
-  // const result: FaceDetectionResult = useFaceDetection({
-  //   faceDetectionOptions: {
-  //     model: 'short',
-  //   },
-  //   faceDetection: new FaceDetection.FaceDetection({
-  //     locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/${file}`,
-  //   }),
-  //   camera: ({ mediaSrc, onFrame }: CameraOptions) =>
-  //     new Camera(mediaSrc, {
-  //       onFrame,
-  //       width,
-  //       height,
-  //     }),
-  // });
-
-  // const { webcamRef: untypedWebcamRef, boundingBox, isLoading } = result;
-
   const webcamRef = useRef<Webcam | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const hairstyles = {
     2000: [
@@ -153,7 +132,6 @@ function App() {
         .then(() => {
           setImage(canvasImage);
           setScreenActive(6)
-          //setTimeout(() => setScreenActive(6), 5000);
         })
         .catch((error) => console.log(`REQUEST IMAGE SAVE ERROR ====> ${error}`));
     } else console.error('Element not found');
@@ -169,36 +147,6 @@ function App() {
     setImage(imageSrc!);
     setScreenActive(5);
   };
-
-  const renderWebCam = () => (
-    <div className="webcamContainer" style={{display: `${screenACtive > 1 && screenACtive < 5 ? 'block' : 'none'}`}}>
-       <div style={{ width, height, position: 'relative' }}>
-        {/*{boundingBox.map((box: any, index: any) => (
-          <div
-            key={`${index + 1}`}
-            style={{
-              border: '4px solid red',
-              position: 'absolute',
-              top: `${box.yCenter * 100}%`,
-              left: `${box.xCenter * 100}%`,
-              width: `${box.width * 100}%`,
-              height: `${box.height * 100}%`,
-              zIndex: 1,
-            }}
-          />
-        ))} */}
-        <Webcam
-          ref={webcamRef}
-          forceScreenshotSourceSize
-          screenshotFormat="image/png"
-          style={{
-            height,
-            width
-          }}
-        />
-      </div>
-    </div>
-  );
 
   const renderScreen = () => {
     let html: any;
@@ -329,13 +277,43 @@ function App() {
   };
 
   useEffect(() => {
-    if (screenACtive === 4) {
-      setTimeout(() => processPicture(), 5000);
-    }
+    // if (screenACtive === 4) {
+    //   setTimeout(() => processPicture(), 5000);
+    // }
     if (screenACtive === 5) {
       setTimeout(() => exportAsImage(), 5000);
     }
   }, [screenACtive]);
+
+  const loadModels = () => {
+    Promise.all([
+      faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
+      faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
+      faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
+      faceapi.nets.faceExpressionNet.loadFromUri("/models")
+    ]).then(() => { faceMyDetect(); })
+  }
+
+  const faceMyDetect = () => {
+    setInterval(async () => {
+      const videoElement = webcamRef.current?.video;
+      if (videoElement) {
+        const detections = await faceapi.detectAllFaces(videoElement, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions();
+        if (canvasRef.current) {
+          canvasRef.current.appendChild(faceapi.createCanvasFromMedia(videoElement));
+          faceapi.matchDimensions(canvasRef.current, { width:940, height:650 });
+          const resized = faceapi.resizeResults(detections,{ width:940, height:650 });
+          faceapi.draw.drawDetections(canvasRef.current,resized);
+          faceapi.draw.drawFaceLandmarks(canvasRef.current,resized);
+          faceapi.draw.drawFaceExpressions(canvasRef.current,resized);
+        }
+      }
+    },1000)
+  }
+
+  useEffect(() => {
+    webcamRef && loadModels()
+  },[])
 
   return (
     <div className="container">
@@ -343,18 +321,23 @@ function App() {
       {screenACtive !== 5 && renderScreen()}
       <div className={`screen screen-five ${screenACtive === 5 && 'active'}`}>
         <div className="image-container">
-          <div className="image">
-            {image && (
-              <img
-                src={image}
-                alt="Wella Beauty Festival - Sebastian Mirror"
-                style={{ width: '100%', height: '100%' }}
-              />
-            )}
-          </div>
+          <div className="image" style={{ backgroundImage: `url('${image}')` }} />
         </div>
       </div>
-      {renderWebCam()}
+      {screenACtive < 5 &&
+        <>
+          <Webcam
+            ref={webcamRef}
+            forceScreenshotSourceSize
+            screenshotFormat="image/png"
+            className='video-source'
+            style={{
+              display: `${screenACtive > 1 && screenACtive < 5 ? 'block' : 'none'}`
+            }}
+          />
+          <canvas ref={canvasRef} style={{ display: `${screenACtive === 4 ? 'block' : 'none'}`}} className="appcanvas" />
+        </>
+      }
       {/* Screens [ END ] */}
     </div>
   );
