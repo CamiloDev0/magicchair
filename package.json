@@ -12,8 +12,6 @@
     "@mediapipe/camera_utils": "^0.3.1640029074",
     "@mediapipe/face_detection": "^0.4.1646425229",
     "@types/node": "^16.7.13",
-    "@types/react": "^17.0.20",
-    "@types/react-dom": "^17.0.9",
     "axios": "^0.25.0",
     "html2canvas": "^1.4.1",
     "react": "^18.2.0",
