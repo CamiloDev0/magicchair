@@ -277,9 +277,9 @@ function App() {
   };
 
   useEffect(() => {
-    // if (screenACtive === 4) {
-    //   setTimeout(() => processPicture(), 5000);
-    // }
+    if (screenACtive === 4) {
+      setTimeout(() => processPicture(), 5000);
+    }
     if (screenACtive === 5) {
       setTimeout(() => exportAsImage(), 5000);
     }
