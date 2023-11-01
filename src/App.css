@@ -77,6 +77,31 @@ video, .appcanvas {
   top: 0;
   bottom: 0;
   z-index: -1;
+  /* transform: scaleX(-1); */
+}
+
+.silueta {
+  position: absolute;
+  top: 10%;
+  left: 17%;
+}
+
+.silueta-wig{
+  position: absolute;
+  top: 18%;
+  left: 36%;
+}
+
+.silueta-wig img{
+  object-fit: cover;
+  width: 280px;
+}
+
+.silueta img{
+  position: absolute;
+  height: 720px;
+  width: 720px;
+  object-fit: cover;
 }
 
 .left, .right{

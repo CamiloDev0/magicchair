@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import Webcam from 'react-webcam';
+import QRCode from 'react-qr-code';
 import * as faceapi from 'face-api.js'
 import html2canvas from 'html2canvas';
 import axios from 'axios';
-import QRCode from 'react-qr-code';
 import './App.css'; 
 
 function App() {
@@ -196,7 +196,7 @@ function App() {
                 (data: { key: string; file: string }) => (
                   <div
                     className={`menu menu-white ${data.key}`}
-                    onClick={() => setHairStyle(data.key)}
+                    onClick={() => setHairStyle(data.file)}
                     style={{ backgroundImage: `url(/${data.file})` }}
                     role="button"
                     aria-hidden="true"
@@ -227,7 +227,7 @@ function App() {
         );
         break;
       case 4:
-        setTimeout(() => setCountdown(countdown - 1), 1000);
+        setTimeout(() => setCountdown(countdown - 1), 3000);
         html = (
           <div className={`screen screen-four ${screenACtive === 4 && 'active'}`}>
             {countdown > 0 && (
@@ -236,7 +236,11 @@ function App() {
                 className="countdown"
                 src={`/${countdown}.png`}
                 alt="final countdown"
-              /></>
+              />
+              <div className="silueta">
+                <img src="/plantilla.png" />
+              </div>
+              </>
             )}
           </div>
         );
@@ -245,19 +249,19 @@ function App() {
         html = (
           <div className={`screen screen-six ${screenACtive === 6 && 'active'}`} style={{ backgroundImage: `url('${image}')` }}>
             <div className="qr-container">
-              <QRCode
-                size={256}
-                bgColor="rgba(255,255,255,0.7)"
-                style={{ height: 'auto', maxWidth: '256px', width: '100%' }}
-                value={`https://mocionws.info/download.html?url=https://mocionws.info/mirror/${imageKey}.png&name=Wella Beauty Festival - Sebastian Mirror`}
-                viewBox="0 0 256 256"
-              />
+            <QRCode
+              size={256}
+              bgColor="rgba(255,255,255,0.7)"
+              style={{ height: 'auto', maxWidth: '256px', width: '100%' }}
+              value={`https://mocionws.info/download.html?url=https://mocionws.info/mirror/${imageKey}.png&name=Wella Beauty Festival - Sebastian Mirror`}
+              viewBox="0 0 256 256"
+            />
             </div>
             <div
               className="buttonFinish"
               role="button"
               aria-hidden="true"
-              onClick={() => setScreenActive(1)}
+              onClick={() => window.location.replace('/')}
             />
           </div>
         );
@@ -278,7 +282,7 @@ function App() {
 
   useEffect(() => {
     if (screenACtive === 4) {
-      setTimeout(() => processPicture(), 5000);
+      setTimeout(() => processPicture(), 10000);
     }
     if (screenACtive === 5) {
       setTimeout(() => exportAsImage(), 5000);
@@ -298,14 +302,16 @@ function App() {
     setInterval(async () => {
       const videoElement = webcamRef.current?.video;
       if (videoElement) {
-        const detections = await faceapi.detectAllFaces(videoElement, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions();
+        //const detections = await faceapi.detectAllFaces(videoElement, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions();
+        const detections = await faceapi.detectAllFaces(videoElement, new faceapi.TinyFaceDetectorOptions());
         if (canvasRef.current) {
+          //canvasRef.current.innerHTML = faceapi.createCanvasFromMedia(videoRef.current)
           canvasRef.current.appendChild(faceapi.createCanvasFromMedia(videoElement));
-          faceapi.matchDimensions(canvasRef.current, { width:940, height:650 });
-          const resized = faceapi.resizeResults(detections,{ width:940, height:650 });
+          faceapi.matchDimensions(canvasRef.current, { width:900, height:800 });
+          const resized = faceapi.resizeResults(detections,{ width:900, height:800 });
           faceapi.draw.drawDetections(canvasRef.current,resized);
-          faceapi.draw.drawFaceLandmarks(canvasRef.current,resized);
-          faceapi.draw.drawFaceExpressions(canvasRef.current,resized);
+          //faceapi.draw.drawFaceLandmarks(canvasRef.current,resized);
+          //faceapi.draw.drawFaceExpressions(canvasRef.current,resized);
         }
       }
     },1000)
@@ -322,6 +328,9 @@ function App() {
       <div className={`screen screen-five ${screenACtive === 5 && 'active'}`}>
         <div className="image-container">
           <div className="image" style={{ backgroundImage: `url('${image}')` }} />
+          <div className="silueta-wig">
+            <img src={`/${hairstyle}`} />
+          </div>
         </div>
       </div>
       {screenACtive < 5 &&
@@ -342,4 +351,5 @@ function App() {
     </div>
   );
 };
+
 export default App;
