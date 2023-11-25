@@ -35,7 +35,7 @@
 }
 
 .screen-two, .screen-three, .screen-four, .screen-five{
-  background-image: url('/marco.png');
+  background-image: url('/marco-kg.png');
 }
 
 h1{
@@ -69,12 +69,12 @@ h1{
 
 video, .appcanvas {
   width: 100vw;
-  height: 100vh;
+  height: 70vh;
   object-fit: cover;
   position: fixed;
   left: 0;
   right: 0;
-  top: 0;
+  top: 29rem;
   bottom: 0;
   z-index: -1;
   /* transform: scaleX(-1); */
@@ -184,20 +184,33 @@ video, .appcanvas {
 
 .image{
   width: 92.5%;
-  margin: 4.5% 3.5%;
-  height: 1750px;
+  margin: 43% 3.5%;
+  height: 1280px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  /* z-index: -1;
+  position: absolute; */
+}
+
+.top-image{
+  width: 100%;
+  margin: 43% 3.5%;
+  /* height: 1280px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('/top-kg.png');
+  position: absolute;
 }
 
 .qr-container{
   width: 80%;
   height: 250px;
-  background: rgba(0,0,0,.7);
+  /* background: rgba(0,0,0,.7); */
   padding: 5% 10%;
   position: absolute;
-  top: 40%;
+  top: 52%;
 }
 
 .buttonFinish{
@@ -213,4 +226,8 @@ video, .appcanvas {
   bottom: 25%;
   left: 23%;
   border: solid;
+}
+
+.screen-six {
+  background-image: url("/qr-back.png");
 }

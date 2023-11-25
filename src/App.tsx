@@ -7,7 +7,7 @@ import axios from 'axios';
 import './App.css'; 
 
 function App() {
-  const [screenACtive, setScreenActive] = useState(1);
+  const [screenACtive, setScreenActive] = useState(2);
   const [product, setProduct] = useState(0);
   const [hairstyle, setHairStyle] = useState('');
   const [countdown, setCountdown] = useState(3);
@@ -127,7 +127,7 @@ function App() {
       const headers = {
         'Content-Type': 'application/json',
       };
-      const data = JSON.stringify({ image: canvasImage, id: imageKey, folder: 'mirror' });
+      const data = JSON.stringify({ image: canvasImage, id: imageKey, folder: 'bancolombia' });
       axios({ method: 'post', url: 'https://mocionws.info/', headers, data })
         .then(() => {
           setImage(canvasImage);
@@ -154,7 +154,7 @@ function App() {
       case 2:
         html = (
           <div className={`screen screen-two ${screenACtive === 2 && 'active'}`}>
-            <h1>elige la década</h1>
+            {/* <h1>elige la década</h1>
             <div className="left">
               {Object.entries(menu).map(([, value]) => (
                 <div
@@ -183,9 +183,10 @@ function App() {
                   />
                 </>
               )}
-            </div>
+            </div> */}
           </div>
         );
+        setTimeout(() => setScreenActive(4), 5000);
         break;
       case 3:
         html = (
@@ -231,15 +232,16 @@ function App() {
         html = (
           <div className={`screen screen-four ${screenACtive === 4 && 'active'}`}>
             {countdown > 0 && (
-              <><h1>¡sonríe!</h1>
+              <>
+              {/* <h1>¡sonríe!</h1> */}
               <img
                 className="countdown"
                 src={`/${countdown}.png`}
                 alt="final countdown"
               />
-              <div className="silueta">
+              {/* <div className="silueta">
                 <img src="/plantilla.png" />
-              </div>
+              </div> */}
               </>
             )}
           </div>
@@ -247,22 +249,17 @@ function App() {
         break;
       case 6:
         html = (
-          <div className={`screen screen-six ${screenACtive === 6 && 'active'}`} style={{ backgroundImage: `url('${image}')` }}>
+          <div className={`screen screen-six ${screenACtive === 6 && 'active'}`} role="button" aria-hidden="true" onClick={() => window.location.replace('/')}>
             <div className="qr-container">
             <QRCode
-              size={256}
+              size={400}
               bgColor="rgba(255,255,255,0.7)"
-              style={{ height: 'auto', maxWidth: '256px', width: '100%' }}
-              value={`https://mocionws.info/download.html?url=https://mocionws.info/mirror/${imageKey}.png&name=Wella Beauty Festival - Sebastian Mirror`}
-              viewBox="0 0 256 256"
+              style={{ height: 'auto', maxWidth: '400px', width: '100%' }}
+              value={`https://mocionws.info/download.html?url=https://mocionws.info/bancolombia/${imageKey}.png&name=Bancolombia - Karol G`}
+              viewBox="0 0 400 400"
             />
             </div>
-            <div
-              className="buttonFinish"
-              role="button"
-              aria-hidden="true"
-              onClick={() => window.location.replace('/')}
-            />
+            
           </div>
         );
         break;
@@ -325,14 +322,15 @@ function App() {
     <div className="container">
       {/* Screens [ START ] */}
       {screenACtive !== 5 && renderScreen()}
-      <div className={`screen screen-five ${screenACtive === 5 && 'active'}`}>
+      <div className={`screen screen-five ${screenACtive === 5 && 'active'}`} >
         <div className="image-container">
-          <div className="image" style={{ backgroundImage: `url('${image}')` }} />
-          <div className="silueta-wig">
+          <div className="image" style={{ backgroundImage: `url('${image}')`, zIndex:-1, position:'absolute' }} />
+          {/* <div className="silueta-wig">
             <img src={`/${hairstyle}`} />
-          </div>
+          </div> */}
         </div>
       </div>
+      <div className='top-image' />
       {screenACtive < 5 &&
         <>
           <Webcam
