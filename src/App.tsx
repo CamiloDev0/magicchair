@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
   const [screenACtive, setScreenActive] = useState(2);
-  const [product, setProduct] = useState(0);
+  const [product] = useState(0);
   const [hairstyle, setHairStyle] = useState('');
   const [countdown, setCountdown] = useState(3);
   const [image, setImage] = useState<string | null>('');
@@ -84,36 +84,36 @@ function App() {
     ],
   };
 
-  const menu = {
-    0:[
-      {
-        key: 'decade-2000',
-        file: '2000.png',
-        id: 2000,
-      },
-    ],
-    1:[
-      {
-        key: 'decade-1990',
-        file: '1990.png',
-        id: 1990,
-      },
-    ],
-    2:[
-      {
-        key: 'decade-1980',
-        file: '1980.png',
-        id: 1980,
-      },
-    ],
-    3:[
-      {
-        key: 'decade-1970',
-        file: '1970.png',
-        id: 1970,
-      },
-    ]
-  };
+  // const menu = {
+  //   0:[
+  //     {
+  //       key: 'decade-2000',
+  //       file: '2000.png',
+  //       id: 2000,
+  //     },
+  //   ],
+  //   1:[
+  //     {
+  //       key: 'decade-1990',
+  //       file: '1990.png',
+  //       id: 1990,
+  //     },
+  //   ],
+  //   2:[
+  //     {
+  //       key: 'decade-1980',
+  //       file: '1980.png',
+  //       id: 1980,
+  //     },
+  //   ],
+  //   3:[
+  //     {
+  //       key: 'decade-1970',
+  //       file: '1970.png',
+  //       id: 1970,
+  //     },
+  //   ]
+  // };
 
   const exportAsImage = async () => {
     const element = document.querySelector('.screen-five');
