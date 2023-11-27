@@ -25,23 +25,26 @@
   background-repeat: no-repeat;
 }
 
-.active{
+.active {
   display: block;
 }
 
-.screen-one{
+.screen-one {
   background-image: url('/portada.png');
   cursor: pointer;
 }
 
-.screen-two, .screen-three, .screen-four, .screen-five{
+.screen-two,
+.screen-three,
+.screen-four,
+.screen-five {
   background-image: url('/marco-kg.png');
 }
 
-h1{
+h1 {
   color: #fff;
   text-align: center;
-  font-family: Gotham,sans-serif;
+  font-family: Gotham, sans-serif;
   font-size: xxx-large !important;
   font-style: normal;
   font-weight: 700;
@@ -49,12 +52,13 @@ h1{
   text-transform: uppercase;
 }
 
-.screen-two{
+.screen-two {
   display: flex;
   flex-wrap: wrap;
 }
 
-.screen-two h1, .screen-four h1{
+.screen-two h1,
+.screen-four h1 {
   z-index: 1;
   width: 100%;
   padding: 5%;
@@ -62,12 +66,13 @@ h1{
   top: 5%;
 }
 
-.webcamContainer{
+.webcamContainer {
   position: absolute;
   bottom: 1920px;
 }
 
-video, .appcanvas {
+video,
+.appcanvas {
   width: 100vw;
   height: 70vh;
   object-fit: cover;
@@ -86,25 +91,26 @@ video, .appcanvas {
   left: 17%;
 }
 
-.silueta-wig{
+.silueta-wig {
   position: absolute;
   top: 18%;
   left: 36%;
 }
 
-.silueta-wig img{
+.silueta-wig img {
   object-fit: cover;
   width: 280px;
 }
 
-.silueta img{
+.silueta img {
   position: absolute;
   height: 720px;
   width: 720px;
   object-fit: cover;
 }
 
-.left, .right{
+.left,
+.right {
   width: 45%;
   margin: 0 8%;
   position: absolute;
@@ -116,23 +122,24 @@ video, .appcanvas {
   align-items: flex-start;
 }
 
-.left{
+.left {
   left: 0%;
 }
 
-.right{
+.right {
   right: 0%;
   width: 20%;
   top: 15%;
 }
 
-.menu{
+.menu {
   height: 200px;
   width: 200px;
 }
 
-.menu-white, .menu-transparent{
-  background: rgba(255,255,255,.7);
+.menu-white,
+.menu-transparent {
+  background: rgba(255, 255, 255, .7);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -142,50 +149,53 @@ video, .appcanvas {
   opacity: 0.7;
 }
 
-.menu-white:hover{
+.menu-white:hover {
   transform: translateX(20px);
   opacity: 1;
 }
 
-.menu-transparent{
+.menu-transparent {
   background-color: transparent !important;
 }
 
-.decade-2000{
+.decade-2000 {
   background-image: url("/2000.png");
 }
 
-.decade-1990{
+.decade-1990 {
   background-image: url("/1990.png");
 }
 
-.decade-1980{
+.decade-1980 {
   background-image: url("/1980.png");
 }
 
-.decade-1970{
+.decade-1970 {
   background-image: url("/1970.png");
 }
 
-.btn-back{
+.btn-back {
   background-image: url("/regreso.png");
 }
 
-.btn-next{
+.btn-next {
   background-image: url("/photo.png");
 }
 
-.countdown{
+.countdown {
+  width: 300px;
+  height: 300px;
+  /* centrar vertical y horizontalmente */
   position: absolute;
-  z-index: 1;
-  bottom: 5%;
-  left: 25%;
+  top: 50%;
+  left: 50%;
+  margin: -150px 0 0 -150px;
+  object-fit: contain;
 }
 
-.image{
+.image {
   width: 92.5%;
-  margin: 43% 3.5%;
-  height: 1280px;
+  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -193,7 +203,7 @@ video, .appcanvas {
   position: absolute; */
 }
 
-.top-image{
+.top-image {
   width: 100%;
   margin: 43% 3.5%;
   /* height: 1280px; */
@@ -204,7 +214,7 @@ video, .appcanvas {
   position: absolute;
 }
 
-.qr-container{
+.qr-container {
   width: 80%;
   height: 250px;
   /* background: rgba(0,0,0,.7); */
@@ -213,7 +223,7 @@ video, .appcanvas {
   top: 52%;
 }
 
-.buttonFinish{
+.buttonFinish {
   background-image: url("/botonfinal.png");
   position: absolute;
   z-index: 1;
@@ -230,4 +240,12 @@ video, .appcanvas {
 
 .screen-six {
   background-image: url("/qr-back.png");
+}
+
+.video-source {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
 }
